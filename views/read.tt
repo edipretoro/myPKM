@@ -1,0 +1,61 @@
+<div id="page">
+      <div id="sidebar">
+        <ul id="sidebar-items">
+          <li>
+            <h3>Join the community</h3>
+            <ul class="links">
+
+              <li><a href="http://perldancer.org/">PerlDancer</a></li>
+              <li><a href="http://twitter.com/PerlDancer/">Official Twitter</a></li>
+              <li><a href="http://github.com/sukria/Dancer/">GitHub Community</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <h3>Browse the documentation</h3>
+
+            <ul class="links">
+              <li><a
+              href="http://search.cpan.org/dist/Dancer/lib/Dancer/Introduction.pod">Introduction</a></li>
+              <li><a href="http://search.cpan.org/dist/Dancer/lib/Dancer/Cookbook.pod">Cookbook</a></li>
+              <li><a href="http://search.cpan.org/dist/Dancer/lib/Dancer/Deployment.pod">Deployment Guide</a></li>
+              <li><a
+              href="http://search.cpan.org/dist/Dancer/lib/Dancer/Tutorial.pod"
+              title="a tutorial to build a small blog engine with Dancer">Tutorial</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <h3>Your application's environment</h3>
+
+            <ul>
+                <li>Location: <code>/home/manu/projets/myPKM</code></li>
+                <li>Template engine: <code><% settings.template %></code></li>
+                <li>Logger: <code><% settings.logger %></code></li>
+                <li>Environment: <code><% settings.environment %></code></li>
+            </ul>
+
+          </li>
+        </ul>
+
+      </div>
+
+      <div id="content">
+        <div id="header">
+          <h1>Perl is dancing</h1>
+          <h2>You&rsquo;ve joined the dance floor!</h2>
+        </div>
+
+        <div>
+         <h1><% title %></h1>
+        
+         <p>
+          <% content %>
+         </p>
+
+         <p>
+          Get from: <a href="<% url %>"><% url %></a> (<% date %>)
+         </p>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <title>[% link.title %]</title>
+  </head>
+
+  <body>
+    <h1>[% link.title %]</h1>
+
+    <div>
+      [% link.content %]
+    </div> 
+    <hr />
+    <div>
+      Get from <a href="[% link.url %]">[% link.url %]</a> on [% link.creation_date %]
+    </div>
+  </body>
+</html>

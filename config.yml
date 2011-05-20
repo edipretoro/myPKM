@@ -27,3 +27,8 @@ template: "simple"
 #     start_tag: '[%'
 #     end_tag:   '%]'
 
+plugins:
+  DBIC:
+    mypkm:
+      schema_class: myPKM::Schema
+      dsn: dbi:SQLite:dbname=./mypkm.db

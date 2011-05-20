@@ -1,0 +1,24 @@
+<div id="navigation">
+  <a href="/view/<% prev %>">Previous</a>&nbsp;
+  <a href="/view/<% next %>">Next</a>
+</div>
+<div id="page">
+  <div id="content">
+    <div>
+     <h1><% title %></h1>
+    
+     <p>
+       <% content %>
+     </p>
+
+     <p>
+       Get from: <a href="<% url %>"><% url %></a> (<% date %>)
+     </p>
+    </div>
+  </div>
+</div>
+<div id="navigation">
+  <a href="/view/<% prev %>">Previous</a>&nbsp;
+  <a href="/view/<% next %>">Next</a>
+</div>
+<hr />

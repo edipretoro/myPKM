@@ -7,6 +7,7 @@ use LWP::UserAgent;
 use HTML::ResolveLink;
 use HTML::TreeBuilder::XPath;
 use Encode;
+use DateTime;
 
 our $VERSION = '0.1';
 
@@ -86,6 +87,11 @@ any [ 'get', 'post' ] => '/add' => sub {
     );
 
     redirect '/';
+};
+
+any [ 'get', 'post' ] => '/list' => sub {
+    my @links = schema->resultset('Link')->search( { creation_date => { like => DateTime->now->ymd('-') . '%' }})->all();
+    template 'list', { links => \@links };
 };
 
 sub deploy {

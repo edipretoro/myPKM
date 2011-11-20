@@ -24,8 +24,8 @@ any [ 'get', 'post' ] => '/view/:id' => sub {
         content => $article->content,
         title => $article->title,
         date => $article->creation_date,
-        next => params->{id} + 1,
-        prev => params->{id} - 1 || params->{id},
+        next_link => params->{id} + 1,
+        prev_link => params->{id} - 1 || params->{id},
     };
 };
 

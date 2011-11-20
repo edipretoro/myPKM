@@ -103,6 +103,13 @@ any [ 'get', 'post' ] => '/search' => sub {
     template 'search';
 };
 
+any [ 'get', 'post' ] => '/random' => sub {
+    my $last_id = schema->resultset('Link')->get_column('id')->max;
+    my $random = int(rand($last_id)) + 1;
+    redirect "/view/$random";
+};
+
+
 sub deploy {
     schema->deploy();
 }

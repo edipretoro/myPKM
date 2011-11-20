@@ -23,6 +23,7 @@ WriteMakefile(
         'Encode'                   => 0,
         'DateTime'                 => 0,
         'DBIx::Class'              => 0,
+        'DateTime::Format::SQLite' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'myPKM-*' },

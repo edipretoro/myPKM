@@ -90,7 +90,10 @@ any [ 'get', 'post' ] => '/add' => sub {
 };
 
 any [ 'get', 'post' ] => '/list' => sub {
-    my @links = schema->resultset('Link')->search( { creation_date => { like => DateTime->now->ymd('-') . '%' }})->all();
+    my @links = schema->resultset('Link')->search(
+        { creation_date => { like => DateTime->now->ymd('-') . '%' }},
+        { order_by => { -desc => 'creation_date' }}
+    )->all();
     template 'list', { links => \@links };
 };
 

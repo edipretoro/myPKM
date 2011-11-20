@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+use Term::ProgressBar;
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 
@@ -15,9 +16,12 @@ my $pkm = myPKM::Schema->connect( $dsn );
 
 my $links_rs = $pkm->resultset('Link')->search( { content => 'not defined' } );
 
-my $total = $links_rs->count;
-print "We have $total links to process.\n";
+my $total = 0;
+my $progress = Term::ProgressBar->new( { 
+    name => 'Articles to collect (' . $links_rs->count . ')',
+    count => $links_rs->count
+});
 while (my $link = $links_rs->next()) {
     $link->update( { content => myPKM::get_article( $link->url() ) } );
-    print "Still ", $total--, " links to process.\n";
+    $progress->update(++$total);
 }

@@ -94,6 +94,11 @@ any [ 'get', 'post' ] => '/list' => sub {
     template 'list', { links => \@links };
 };
 
+any [ 'get', 'post' ] => '/last' => sub {
+    my $last_id = schema->resultset('Link')->get_column('id')->max;
+    redirect "/view/$last_id";
+};
+
 sub deploy {
     schema->deploy();
 }

@@ -9,7 +9,8 @@ use lib "$FindBin::Bin/../lib";
 use myPKM::Schema;
 use myPKM;
 
-my $dsn = "dbi:SQLite:dbname=$FindBin::Bin/../mypkm.db";
+my $database = shift;
+my $dsn = "dbi:SQLite:dbname=" . $database;
 my $pkm = myPKM::Schema->connect( $dsn );
 
 my $links_rs = $pkm->resultset('Link')->search( { content => 'not defined' } );

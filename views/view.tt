@@ -1,5 +1,6 @@
 <div id="navigation">
   <a href="/view/<% prev_link %>">Previous</a>&nbsp;
+  <a href="/delete/<% delete_link %>">Delete</a>&nbsp;
   <a href="/view/<% next_link %>">Next</a>
 </div>
 
@@ -20,6 +21,7 @@
 </div>
 <div id="navigation">
   <a href="/view/<% prev_link %>">Previous</a>&nbsp;
+  <a href="/delete/<% delete_link %>">Delete</a>&nbsp;
   <a href="/view/<% next_link %>">Next</a>
 </div>
 <hr />

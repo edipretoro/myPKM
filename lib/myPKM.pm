@@ -15,6 +15,13 @@ get '/' => sub {
     template 'index';
 };
 
+any [ 'get', 'post' ] => '/delete/:id' => sub {
+    redirect '/' unless params->{id};
+
+    schema->resultset('Link')->search( { id => params->{id} } )->delete();
+    redirect '/last';
+};
+
 any [ 'get', 'post' ] => '/view/:id' => sub {
     redirect '/' unless params->{id};
 
@@ -28,6 +35,7 @@ any [ 'get', 'post' ] => '/view/:id' => sub {
         date => $article->creation_date,
         next_link => params->{id} == $max_id ? $max_id : params->{id} + 1,
         prev_link => params->{id} - 1 || params->{id},
+        delete_link => params->{id},
     };
 };
 

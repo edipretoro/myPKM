@@ -47,7 +47,7 @@ any [ 'get', 'post' ] => '/read' => sub {
         $title ||= "No title";
 
         my $linker = HTML::ResolveLink->new(
-            base => params->{url}
+            base => $response->base()
         );
 
         $content = extract_main_html( $linker->resolve( $response->decoded_content ) );
@@ -56,7 +56,7 @@ any [ 'get', 'post' ] => '/read' => sub {
         schema->txn_do(
             sub {
                 my $link = schema->resultset('Link')->find_or_create({
-                    url => params->{url},
+                    url => $response->base,
                     content => $content,
                     title => $title,
                 });
@@ -66,7 +66,7 @@ any [ 'get', 'post' ] => '/read' => sub {
     } else {
         $content = "We couldn't get <a href=\"" . params->{url} . "\">this url</a>";
     }
-    template 'read', { url => params->{url}, content => $content, title => $title, date => $date };
+    template 'read', { url => $response->base || params->{url}, content => $content, title => $title, date => $date };
 };
 
 any [ 'get', 'post' ] => '/add' => sub {

@@ -6,7 +6,7 @@ WriteMakefile(
     NAME                => 'myPKM',
     AUTHOR              => q{Emmanuel Di Pretoro <edipretoro@gmail.com>},
     VERSION_FROM        => 'lib/myPKM.pm',
-    ABSTRACT            => 'YOUR APPLICATION ABSTRACT',
+    ABSTRACT            => 'A first implementation of a personal PKM tool',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
       ? ('LICENSE'=> 'perl')
       : ()),

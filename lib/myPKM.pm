@@ -61,6 +61,7 @@ any [ 'get', 'post' ] => '/read' => sub {
                     title => $title,
                 });
                 $link->insert();
+                redirect '/view/' . $link->id;
             }
         );
     } else {

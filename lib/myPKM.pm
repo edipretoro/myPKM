@@ -20,12 +20,13 @@ any [ 'get', 'post' ] => '/view/:id' => sub {
 
     my $article = schema->resultset('Link')->search( { id => params->{id} } )->first;
     redirect '/' unless defined( $article );
+    my $max_id = schema->resultset('Link')->get_column('id')->max;
     template 'view', {
         url => $article->url,
         content => $article->content,
         title => $article->title,
         date => $article->creation_date,
-        next_link => params->{id} + 1,
+        next_link => params->{id} == $max ? $max : params->{id} + 1,
         prev_link => params->{id} - 1 || params->{id},
     };
 };

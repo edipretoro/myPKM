@@ -1,0 +1,12 @@
+<div id="page">
+  <div id="content">
+    <div>
+      <ul>
+<% FOREACH link IN links %>
+        <li><a href="http://0:3000/view/<% link.id %>"><% link.title %></a></li>
+<% END %>
+      </ul>
+    </div>
+  </div>
+</div>
+<hr />

@@ -131,7 +131,7 @@ sub get_article {
 
     if ($response->is_success) {
         my $linker = HTML::ResolveLink->new(
-            base => $link,
+            base => $response->base,
         );
 
         eval { $content = extract_main_html( $linker->resolve( $response->decoded_content ) ); };

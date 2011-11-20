@@ -32,3 +32,5 @@ plugins:
     mypkm:
       schema_class: myPKM::Schema
       dsn: dbi:SQLite:dbname=./mypkm.db
+      options:
+        sqlite_unicode: 1

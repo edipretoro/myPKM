@@ -33,8 +33,8 @@ any [ 'get', 'post' ] => '/view/:id' => sub {
         content => $article->content,
         title => $article->title,
         date => $article->creation_date,
-        next_link => params->{id} == $max_id ? $max_id : params->{id} + 1,
-        prev_link => params->{id} - 1 || params->{id},
+        next_link => params->{id} == $max_id ? $max_id : next_id( params->{id} ),
+        prev_link => params->{id} - 1 || previous_id( params->{id} ),
         delete_link => params->{id},
     };
 };
@@ -149,6 +149,32 @@ sub get_article {
         eval { $content = extract_main_html( $linker->resolve( $response->decoded_content ) ); };
         $content ||= $linker->resolve( $response->decoded_content );
     }
+}
+
+sub previous_id {
+    my ($id) = @_;
+
+    if (exist_id( $id )) {
+        return $id;
+    } else {
+        previous_id( $id - 1 );
+    }
+}
+
+sub next_id {
+    my ($id) = @_;
+
+    if (exist_id( $id )) {
+        return $id;
+    } else {
+        next_id( $id + 1 );
+    }
+}
+
+sub exist_id {
+    my ($id) = @_;
+
+    return schema->resultset('Link')->search({ id => $id})->count();
 }
 
 true;

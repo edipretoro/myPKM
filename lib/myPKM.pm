@@ -21,8 +21,8 @@ any [ 'get', 'post' ] => '/view/:id' => sub {
     redirect '/' unless defined( $article );
     template 'view', {
         url => $article->url,
-        content => decode('utf8', $article->content),
-        title => decode('utf8', $article->title),
+        content => $article->content,
+        title => $article->title,
         date => $article->creation_date,
         next => params->{id} + 1,
         prev => params->{id} - 1 || params->{id},

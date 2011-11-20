@@ -99,6 +99,10 @@ any [ 'get', 'post' ] => '/last' => sub {
     redirect "/view/$last_id";
 };
 
+any [ 'get', 'post' ] => '/search' => sub {
+    template 'search';
+};
+
 sub deploy {
     schema->deploy();
 }

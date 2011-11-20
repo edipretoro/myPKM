@@ -15,6 +15,7 @@ WriteMakefile(
         'Test::More'               => 0,
         'YAML'                     => 0,
         'Dancer'                   => 1.3020,
+        'Dancer::Plugin::DBIC'     => 0,
         'HTML::ExtractMain'        => 0,
         'LWP::UserAgent'           => 0,
         'HTML::ResolveLink'        => 0,

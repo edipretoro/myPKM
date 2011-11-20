@@ -50,7 +50,7 @@ any [ 'get', 'post' ] => '/read' => sub {
             base => $response->base()
         );
 
-        $content = extract_main_html( $linker->resolve( $response->decoded_content ) );
+        eval { $content = extract_main_html( $linker->resolve( $response->decoded_content ) ); };
         $content ||= $linker->resolve( $response->decoded_content );
 
         schema->txn_do(

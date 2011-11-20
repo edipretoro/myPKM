@@ -28,13 +28,14 @@ any [ 'get', 'post' ] => '/view/:id' => sub {
     my $article = schema->resultset('Link')->search( { id => params->{id} } )->first;
     redirect '/' unless defined( $article );
     my $max_id = schema->resultset('Link')->get_column('id')->max;
+
     template 'view', {
         url => $article->url,
         content => $article->content,
         title => $article->title,
         date => $article->creation_date,
         next_link => params->{id} == $max_id ? $max_id : next_id( params->{id} ),
-        prev_link => params->{id} - 1 || previous_id( params->{id} ),
+        prev_link => previous_id( params->{id} ),
         delete_link => params->{id},
     };
 };
@@ -153,9 +154,10 @@ sub get_article {
 
 sub previous_id {
     my ($id) = @_;
+    return 1 if $id <= 1;
 
-    if (exist_id( $id )) {
-        return $id;
+    if (exist_id( $id - 1)) {
+        return $id - 1;
     } else {
         previous_id( $id - 1 );
     }
@@ -164,8 +166,8 @@ sub previous_id {
 sub next_id {
     my ($id) = @_;
 
-    if (exist_id( $id )) {
-        return $id;
+    if (exist_id( $id + 1)) {
+        return $id + 1;
     } else {
         next_id( $id + 1 );
     }
@@ -174,7 +176,7 @@ sub next_id {
 sub exist_id {
     my ($id) = @_;
 
-    return schema->resultset('Link')->search({ id => $id})->count();
+    return schema->resultset('Link')->search({ id => $id })->count();
 }
 
 true;

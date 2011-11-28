@@ -3,7 +3,7 @@
     <div>
       <ul>
 <% FOREACH link IN links %>
-        <li><a href="http://0:3000/view/<% link.id %>"><% link.title %></a></li>
+        <li><a href="/view/<% link.id %>"><% link.title %></a></li>
 <% END %>
       </ul>
     </div>

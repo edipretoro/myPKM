@@ -1,0 +1,17 @@
+<% USE Dumper %>
+<form action="/search" method="post">
+  <input type="text" size="45" name="query" id="query" />
+</form>
+
+<% Dump(hits) %>
+<% IF hits %>
+    <div>
+      <ul>
+<% FOREACH link IN hits %>
+        <li><a href="/view/<% link.id %>"><% link.title %></a></li>
+<% END %>
+      </ul>
+    </div>
+
+<% END %>
+<hr />

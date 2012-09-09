@@ -1,6 +1,7 @@
 <% USE Dumper %>
 <form action="/search" method="post">
   <input type="text" size="45" name="query" id="query" />
+  <input type="submit" value="Search!" />
 </form>
 
 <% Dump(hits) %>

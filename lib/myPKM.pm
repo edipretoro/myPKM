@@ -140,7 +140,6 @@ any [ 'get', 'post' ] => '/random' => sub {
     redirect "/view/$random";
 };
 
-
 sub deploy {
     schema->deploy();
 }

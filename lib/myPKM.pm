@@ -121,7 +121,17 @@ any [ 'get', 'post' ] => '/last' => sub {
 };
 
 any [ 'get', 'post' ] => '/search' => sub {
-    template 'search';
+    if (exists params->{query}) {
+        my $hits = searcher->hits( query => params->{query}, num_wanted => 50 );
+        my @hits;
+        while ( my $hit = $hits->next() ) {
+            push @hits, { id => $hit->{id}, title => $hit->{title} };
+        }
+        print "We have ", scalar(@hits), " results...\n";
+        template 'search', { hits => \@hits };
+    } else {
+        template 'search';
+    }
 };
 
 any [ 'get', 'post' ] => '/random' => sub {

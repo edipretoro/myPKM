@@ -45,3 +45,8 @@ plugins:
         - title
     create: 0
 
+plack_middlewares:
+  Debug:
+    - panels
+    -
+      - Dancer::Routes

@@ -12,7 +12,6 @@ use Lucy::Index::Indexer;
 use Lucy::Plan::FullTextType;
 use Lucy::Plan::Schema;
 use Path::Class;
-use feature 'say';
 
 my $schema = Lucy::Plan::Schema->new;
 my $polyanalyzer = Lucy::Analysis::PolyAnalyzer->new(
@@ -24,6 +23,7 @@ my $type = Lucy::Plan::FullTextType->new(
 $schema->spec_field( name => 'content', type => $type );
 $schema->spec_field( name => 'title', type => $type );
 $schema->spec_field( name => 'url', type => $type );
+$schema->spec_field( name => 'id' )
 my $indexer = Lucy::Index::Indexer->new(
     schema => $schema,
     index => dir( $ENV{HOME}, '.mypkm', 'lucy' ),
@@ -37,6 +37,7 @@ my $link_rs = $pkm->resultset('Link');
 
 while (my $link = $link_rs->next()) {
     $indexer->add_doc({
+        id => $link->id,
         url => $link->url,
         title => $link->title,
         content => $link->content,

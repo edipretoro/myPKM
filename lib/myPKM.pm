@@ -104,8 +104,12 @@ any [ 'get', 'post' ] => '/add' => sub {
 };
 
 any [ 'get', 'post' ] => '/list' => sub {
+    redirect '/list/by_date/' . DateTime->now->ymd('-');
+};
+
+any [ 'get', 'post' ] => '/list/by_date/:date' => sub {
     my @links = schema->resultset('Link')->search(
-        { creation_date => { like => DateTime->now->ymd('-') . '%' }},
+        { creation_date => { like =>  params->{date} . '%' }},
         { order_by => { -desc => 'creation_date' }}
     )->all();
     template 'list', { links => \@links };

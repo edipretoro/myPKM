@@ -31,6 +31,6 @@ plugins:
   DBIC:
     mypkm:
       schema_class: myPKM::Schema
-      dsn: dbi:SQLite:dbname=./mypkm.db
+      dsn: dbi:SQLite:dbname=/home/manu/projets/myPKM/archive.db
       options:
         sqlite_unicode: 1

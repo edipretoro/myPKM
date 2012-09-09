@@ -23,7 +23,8 @@ my $type = Lucy::Plan::FullTextType->new(
 $schema->spec_field( name => 'content', type => $type );
 $schema->spec_field( name => 'title', type => $type );
 $schema->spec_field( name => 'url', type => $type );
-$schema->spec_field( name => 'id' )
+$schema->spec_field( name => 'id', type => $type );
+
 my $indexer = Lucy::Index::Indexer->new(
     schema => $schema,
     index => dir( $ENV{HOME}, '.mypkm', 'lucy' ),

@@ -1,6 +1,7 @@
 package myPKM;
 use Dancer ':syntax';
 use Dancer::Plugin::DBIC;
+use Dancer::Plugin::Lucy;
 
 use HTML::ExtractMain qw( extract_main_html );
 use LWP::UserAgent;
@@ -8,6 +9,9 @@ use HTML::ResolveLink;
 use HTML::TreeBuilder::XPath;
 use Encode;
 use DateTime;
+use HTTP::Cookies::Chrome;
+use Path::Class;
+use Data::Dump;
 
 our $VERSION = '0.1';
 

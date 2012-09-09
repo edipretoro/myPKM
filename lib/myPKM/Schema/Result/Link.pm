@@ -2,6 +2,7 @@ package myPKM::Schema::Result::Link;
 
 use base 'DBIx::Class';
 use DateTime;
+use XML::Writer;
 
 __PACKAGE__->load_components(qw/ Core InflateColumn::DateTime /);
 __PACKAGE__->table('links');
@@ -52,5 +53,37 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key( 'id' );
 __PACKAGE__->add_unique_constraint( [ 'url' ] );
+
+sub as_dublin_core {
+    my ( $self ) = shift;
+    my $xml_output;
+    my $oai_dc_ns = 'http://www.openarchives.org/OAI/2.0/oai_dc/';
+    my $dc_ns = 'http://purl.org/dc/elements/1.1/';
+
+    my $xml_writer = XML::Writer->new(
+        OUTPUT => \$xml_output,
+        NAMESPACES => 1,
+        FORCE_NS_DECLS => 1,
+        ENCODING => 'utf-8',
+        DATA_MODE => 1,
+        DATA_INDENT => 2,
+        PREFIX_MAP => {
+            $oai_dc_ns => 'oai_dc',
+            $dc_ns => 'dc',
+        },
+    );
+
+    $xml_writer->startTag( [$oai_dc_ns, 'metadata']);
+    $xml_writer->startTag( [$oai_dc_ns, 'dc']);
+    $xml_writer->startTag( [$dc_ns, 'title']);
+    $xml_writer->characters( $self->title );
+    $xml_writer->endTag( [$dc_ns, 'title']);
+    $xml_writer->endTag( [$oai_dc_ns, 'dc']);
+    $xml_writer->endTag( [$oai_dc_ns, 'metadata']);
+
+    $xml_writer->end();
+
+    return $xml_output;
+}
 
 1;    # End of myPKM::Schema::Result::Link

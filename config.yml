@@ -34,3 +34,14 @@ plugins:
       dsn: dbi:SQLite:dbname=/home/manu/projets/myPKM/archive.db
       options:
         sqlite_unicode: 1
+  Lucy:
+    index: /home/manu/.mypkm/lucy/
+    polyanalyser:
+      language: en
+    schema:
+      fields:
+        - content
+        - url
+        - title
+    create: 0
+

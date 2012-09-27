@@ -31,6 +31,8 @@ my $indexer = Lucy::Index::Indexer->new(
 );
 
 my $database = shift;
+my $last_id = shift || undef;
+
 my $dsn = "dbi:SQLite:dbname=" . $database;
 my $pkm = myPKM::Schema->connect( $dsn );
 my $link_rs = $pkm->resultset('Link');

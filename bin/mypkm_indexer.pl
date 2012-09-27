@@ -35,7 +35,15 @@ my $last_id = shift || undef;
 
 my $dsn = "dbi:SQLite:dbname=" . $database;
 my $pkm = myPKM::Schema->connect( $dsn );
-my $link_rs = $pkm->resultset('Link');
+
+my $link_rs;
+if (not defined($last_id)) {
+    $link_rs = $pkm->resultset('Link');
+} else {
+    $link_rs = $pkm->resultset('Link')->search({
+        id => { '>' => $last_id }
+    });
+}
 
 while (my $link = $link_rs->next()) {
     $indexer->add_doc({

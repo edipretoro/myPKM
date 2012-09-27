@@ -12,9 +12,13 @@
 
 </head>
 <body>
+ <div class="container">
 <% content %>
-<div id="footer">
-Powered by <a href="http://perldancer.org/">Dancer</a> <% dancer_version %>
-</div>
+
+  <footer>
+    Powered by <a href="http://perldancer.org/">Dancer</a> <% dancer_version %>
+  </footer>
+ </div>
+
 </body>
 </html>

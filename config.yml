@@ -40,6 +40,7 @@ plugins:
       language: en
     schema:
       fields:
+        - id
         - content
         - url
         - title

@@ -1,7 +1,12 @@
 <% USE Dumper %>
-<form action="/search" method="post">
-  <input type="text" size="45" name="query" id="query" />
-  <input type="submit" value="Search!" />
+
+<h3>Search into your bookmarks!</h3>
+
+<form action="<% request.uri_base %>/search" method="post" class="form-search">
+ <div class="input-append">
+  <input type="text" class="span3 search-query" name="query" id="query" placeholder="Type your query..." />
+  <button type="submit" class="btn">Search!</button>
+ </div>
 </form>
 
 <% Dump(hits) %>
@@ -9,10 +14,9 @@
     <div>
       <ul>
 <% FOREACH link IN hits %>
-        <li><a href="/view/<% link.id %>"><% link.title %></a></li>
+        <li><a href="<% request.uri_base %>/view/<% link.id %>"><% link.title %></a></li>
 <% END %>
       </ul>
     </div>
-
 <% END %>
 <hr />
